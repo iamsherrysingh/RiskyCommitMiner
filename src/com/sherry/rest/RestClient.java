@@ -36,9 +36,10 @@ public class RestClient {
     
     public String getListOfIssues(String project, String affectedVersion) {
     	project="MATH";
-    	affectedVersion="3.6";
+    	affectedVersion="3.0";
     	String output="";
         try {
+        	String out;
 
             URL url = new URL("https://issues.apache.org/jira/rest/api/2/search?jql=project="+project+"+AND+type=bug+and+affectedVersion="+affectedVersion);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -50,9 +51,9 @@ public class RestClient {
             }
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
-//            while ((output = br.readLine()) != null) {
-//                System.out.println(output);
-//            }
+            while ((out = br.readLine()) != null) {
+                output+=out;
+            }
             conn.disconnect();
 
         } catch (Exception e) {
