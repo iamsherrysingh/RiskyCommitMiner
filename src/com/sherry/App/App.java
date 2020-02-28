@@ -9,19 +9,17 @@ import com.sherry.rest.RestClient;
 public class App {
 
 	public static void main(String[] args) {
-		new App().getClassesWithIssueId("/home/sherry/commons-math/", "issueID");
+		
+		new App().getClassesWithIssueId("/home/sherry/commons-math/", "MATH-1342");
 	}
 	
 	public void getClassesWithIssueId(String repoLocation, String issueId) {
-		repoLocation="/home/sherry/commons-math/";
-		issueId="DUMMY ISSUE ID";
 
 		FindClassName findClassName= new FindClassName();
-		FindCommits commits= new FindCommits();
+		FindCommits findCommits= new FindCommits();
 		RestClient restClient= new RestClient();
-		
-		
-		List<String> classesToPrioritize=findClassName.getClassesToPrioritize(repoLocation, commits.findCommits(restClient.getCommentsForIssue(issueId)));
+			
+		List<String> classesToPrioritize=findClassName.getClassesToPrioritize(repoLocation, findCommits.findCommits(restClient.getCommentsForIssue(issueId)));
 		
 		for(String classX:classesToPrioritize) {
 			System.out.println(classX);

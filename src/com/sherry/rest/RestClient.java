@@ -8,9 +8,9 @@ import java.net.URL;
 public class RestClient {
 	
     public String getCommentsForIssue(String issueID) {
-    	issueID="MATH-1342";
     	String output="";
         try {
+        	String out;
 
             URL url = new URL("https://issues.apache.org/jira/rest/api/2/issue/"+issueID+"/comment");//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -22,9 +22,9 @@ public class RestClient {
             }
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
-//            while ((output = br.readLine()) != null) {
-//                System.out.println(output);
-//            }
+            while ((out = br.readLine()) != null) {
+               output+=out;
+            }
             conn.disconnect();
 
         } catch (Exception e) {
