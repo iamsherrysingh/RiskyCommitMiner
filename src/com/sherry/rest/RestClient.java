@@ -1,15 +1,18 @@
-package com.sherry.minedata;
+package com.sherry.rest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NetClientGet {
-    public static void main(String[] args) {
+public class RestClient {
+	
+    public String getCommentsForIssue(String issueID) {
+    	issueID="MATH-1342";
+    	String output="";
         try {
 
-            URL url = new URL("https://issues.apache.org/jira/rest/api/2/issue/MATH-1342/comment");//your url i.e fetch data from .
+            URL url = new URL("https://issues.apache.org/jira/rest/api/2/issue/"+issueID+"/comment");//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -19,14 +22,15 @@ public class NetClientGet {
             }
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
-            String output;
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
+//            while ((output = br.readLine()) != null) {
+//                System.out.println(output);
+//            }
             conn.disconnect();
 
         } catch (Exception e) {
-            System.out.println("Exception in NetClientGet:- " + e);
+            System.out.println("Exception in getCommentsForIssue:- " + e);
         }
+        
+        return output;
     }
 }
