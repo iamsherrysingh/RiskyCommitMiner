@@ -25,10 +25,15 @@ public class FindIssueID {
 		while(m.find()) {
 			allMatches.add(m.group());
 		}
-		
-		
+
+		/*System.out.println("Matches:");
+		for(String match: allMatches) {
+			System.out.println(match);
+		}*/
+
 		for(String mydata: allMatches) {
-			Pattern pattern1= Pattern.compile("");
+			//System.out.println("mydata "+mydata);
+			Pattern pattern1= Pattern.compile("MATH-[0-9]+");
 			Matcher matcher= pattern1.matcher(mydata);
 			if(matcher.find()) {
 				allIssueIds.add(matcher.group().trim());

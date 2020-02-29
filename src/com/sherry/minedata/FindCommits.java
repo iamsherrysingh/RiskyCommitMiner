@@ -29,7 +29,7 @@ public class FindCommits {  //(",\"body\":\".+\",\"")
 		 
 		 for(int i=0;i<allMatches.size();i++) {
 			 String mydata= allMatches.get(i);
-			 Pattern pattern1 = Pattern.compile("\\s+[0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][0-9]"); //assumption. commit must trail a space
+			 Pattern pattern1 = Pattern.compile("\\s+[0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]"); //assumption. commit must trail a space
 			 Matcher matcher = pattern1.matcher(mydata);
 			 if (matcher.find())
 			 {
