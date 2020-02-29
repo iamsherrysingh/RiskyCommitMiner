@@ -29,17 +29,28 @@ public class FindCommits {  //(",\"body\":\".+\",\"")
 		 
 		 for(int i=0;i<allMatches.size();i++) {
 			 String mydata= allMatches.get(i);
-			 Pattern pattern1 = Pattern.compile("\\s+[0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]"); //assumption. commit must trail a space
+			 Pattern pattern1 = Pattern.compile("[\\s\\n]*[0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]"); //assumption. commit must trail a space
 			 Matcher matcher = pattern1.matcher(mydata);
 			 if (matcher.find())
 			 {
 			     allCommits.add(matcher.group().trim());
 			 }
 		 }
-		 
-//		 for(String s:allCommits) {
-//			 System.out.println(s);
-//		 }
+
+		for(int i=0;i<allMatches.size();i++) {
+			String mydata= allMatches.get(i);
+			Pattern pattern2 = Pattern.compile("[\\s\\n]*[0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]"); //assumption. commit must trail a space
+			Matcher matcher = pattern2.matcher(mydata);
+			if (matcher.find())
+			{
+				allCommits.add(matcher.group().trim());
+			}
+		}
+
+/*
+		 for(String s:allCommits) {
+			 System.out.println(s);
+		 }*/
 		 
 		 
 		 return allCommits;

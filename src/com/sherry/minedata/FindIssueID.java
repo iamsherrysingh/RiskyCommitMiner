@@ -26,7 +26,7 @@ public class FindIssueID {
 			allMatches.add(m.group());
 		}
 
-		/*System.out.println("Matches:");
+/*		System.out.println("Matches:");
 		for(String match: allMatches) {
 			System.out.println(match);
 		}*/

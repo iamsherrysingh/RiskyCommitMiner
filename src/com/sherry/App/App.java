@@ -12,16 +12,13 @@ public class App {
 	public static void main(String[] args) {
 		
 		App app= new App();
-//		app.getClassesWithIssueId("/home/sherry/commons-math/", "MATH-1342");
-		
-		
+
 		//Testing area below this line
 		RestClient restClient= new RestClient();
 		FindIssueID findIssueID= new FindIssueID();
 		
-		String jsonOutput= restClient.getListOfIssues("project", "affectedVersion");
-//		System.out.println("JSON Output");
-//		System.out.println(jsonOutput);
+		String jsonOutput= restClient.getListOfIssues("MATH", "3.0");
+		System.out.println("JSON Output: "+jsonOutput);
 
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
 		System.out.println("Issue Ids found: "+issueIds.size());

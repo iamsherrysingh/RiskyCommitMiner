@@ -35,8 +35,8 @@ public class RestClient {
     }
     
     public String getListOfIssues(String project, String affectedVersion) {
-    	project="MATH";
-    	affectedVersion="3.0";
+//    	project="MATH";
+//    	affectedVersion="3.0";
     	String output="";
         try {
         	String out;
