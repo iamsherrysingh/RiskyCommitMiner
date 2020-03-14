@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
 import com.sherry.minedata.FindClassName;
 import com.sherry.minedata.FindIssueID;
 import com.sherry.rest.RestClient;
@@ -31,7 +30,7 @@ public class App {
 			repoLocationProperty="localRepoLocationMac";
 		}else{
 			System.out.println("ERROR: Local git repository not configured or host operating OS unknown.\n" +
-					"Please manually over-ride App.repoLocationProperty");
+								"Please manually over-ride App.repoLocationProperty");
 			System.exit(-1);
 		}
 

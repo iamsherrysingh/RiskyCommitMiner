@@ -26,17 +26,14 @@ public class RestClient {
                output+=out;
             }
             conn.disconnect();
-
         } catch (Exception e) {
             System.out.println("Exception in getCommentsForIssue:- " + e);
         }
-        
+
         return output;
     }
     
     public String getListOfIssues(String project, String affectedVersion) {
-//    	project="MATH";
-//    	affectedVersion="3.0";
     	String output="";
         try {
         	String out;

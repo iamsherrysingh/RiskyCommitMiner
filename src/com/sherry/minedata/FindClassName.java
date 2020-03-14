@@ -30,12 +30,8 @@ public class FindClassName {
 	                output+="\n";
 	            }
 	            p.waitFor();
-//	            System.out.println ("exit: " + p.exitValue());
 	            p.destroy();
 	        } catch (Exception e) {};
-			
-//			System.out.println(output);
-//			System.out.println("=========================");
 		}
 
 		return parseOutput(output);

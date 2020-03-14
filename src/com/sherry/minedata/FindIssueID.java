@@ -10,14 +10,9 @@ import java.util.regex.Pattern;
 public class FindIssueID {
 	
 	public List<String> findIssueIds(String jsonResultAffectedVersions) {
-		
-		//Potential Regex ,"key":"[A-Z]-[0-9]",
-		//","key":"MATH-1347","
-		//Regex:   ","key":"MATH-[0-9]+","
-		
 		Set<String> allMatches= new HashSet<String>();
 		List<String> allIssueIds= new ArrayList<String>();
-		
+
 		String pattern="\",\"key\":\"MATH-[0-9]+\",\"";
 		
 		Matcher m= Pattern.compile(pattern)
@@ -25,11 +20,6 @@ public class FindIssueID {
 		while(m.find()) {
 			allMatches.add(m.group());
 		}
-
-/*		System.out.println("Matches:");
-		for(String match: allMatches) {
-			System.out.println(match);
-		}*/
 
 		for(String mydata: allMatches) {
 			//System.out.println("mydata "+mydata);
@@ -42,5 +32,4 @@ public class FindIssueID {
 		
 	return allIssueIds;
 	}
-
 }
