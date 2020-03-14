@@ -16,22 +16,24 @@ public class App {
 		
 		App app= new App();
 		Properties properties= new Properties();
-		properties.load(new FileInputStream("src/config.properties"));
-
-		//Testing area below this line
 		RestClient restClient= new RestClient();
 		FindIssueID findIssueID= new FindIssueID();
-		
+
+		properties.load(new FileInputStream("src/config.properties"));
+
+		//get JSON result with JQL request
 		String jsonOutput= restClient.getListOfIssues(properties.getProperty("project"), properties.getProperty("version"));
 		System.out.println("JSON Output: "+jsonOutput);
 
+		//filter JSON request to find all issue IDs
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
 		System.out.println(issueIds);
 		System.out.println("Issue Ids found: "+issueIds.size());
 
+		//scan local repo to find classes that changed
 		System.out.println("Classes Found:");
 		for(String issueId: issueIds) {
-			app.getClassesWithIssueId("/home/sherry/commons-math/", issueId);
+			app.getClassesWithIssueId(properties.getProperty("localRepoLocation"), issueId);
 		}
 
 	}
