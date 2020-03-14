@@ -31,7 +31,6 @@ public class App {
 	}
 	
 	public void getClassesWithIssueId(String repoLocation, String issueId) {
-
 		FindClassName findClassName= new FindClassName();
 		FindCommits findCommits= new FindCommits();
 		RestClient restClient= new RestClient();
@@ -42,5 +41,4 @@ public class App {
 			System.out.println(classX);
 		}
 	}
-
 }

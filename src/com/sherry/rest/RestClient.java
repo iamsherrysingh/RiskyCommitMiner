@@ -41,7 +41,7 @@ public class RestClient {
         try {
         	String out;
 
-            URL url = new URL("https://issues.apache.org/jira/rest/api/2/search?jql=project="+project+"+AND+type=bug+and+affectedVersion="+affectedVersion);//your url i.e fetch data from .
+            URL url = new URL("https://issues.apache.org/jira/rest/api/2/search?jql=project="+project+"+AND+type=bug+AND+resolution=Fixed+and+affectedVersion="+affectedVersion);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
