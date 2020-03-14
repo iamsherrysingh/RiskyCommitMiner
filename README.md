@@ -15,13 +15,21 @@ git clone <project git URL>
     #RiskyCommitMiner INPUTS
 project=MATH
 version=3.0
-localRepoLocation=C:/commons-math/
+localRepoLocationWindows=C:/commons-math/
 ```
 
-### Sample configuration(src/config.properties) for Linux(Mac may work):
+### Sample configuration(src/config.properties) for Linux:
 ```
     #RiskyCommitMiner INPUTS
 project=MATH
 version=3.0
-localRepoLocation=/home/user/commons-math/
+localRepoLocationLinux=/home/user/commons-math/
+```
+
+### Sample configuration(src/config.properties) for Mac(untested):
+```
+    #RiskyCommitMiner INPUTS
+project=MATH
+version=3.0
+localRepoLocationMac=/home/user/commons-math/
 ```
