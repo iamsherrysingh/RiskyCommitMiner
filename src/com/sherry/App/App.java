@@ -30,13 +30,23 @@ public class App {
 		System.out.println(issueIds);
 		System.out.println("Issue Ids found: "+issueIds.size());
 
+		//Find host Operating System and use the appropriate property from the properties file.
+		String hostOS= System.getProperty("os.name").split(" ")[0];
+		String repoLocationProperty="LOCAL REPO LOCATION NOT CONFIGURED  OR  HOST OS UNKNOWN";
+		if(hostOS.equalsIgnoreCase("windows")){
+			repoLocationProperty="localRepoLocationWindows";
+		}else if(hostOS.equalsIgnoreCase("linux")){
+			repoLocationProperty="localRepoLocationLinux";
+		}else if(hostOS.equalsIgnoreCase("windows")) {
+			repoLocationProperty="localRepoLocationMac";
+		}
+
 		//scan local repo to find classes that changed
 		System.out.println("Classes Found:");
 		for(String issueId: issueIds) {
-			app.getClassesWithIssueId(properties.getProperty("localRepoLocation"), issueId);
+				app.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
+			}
 		}
-
-	}
 	
 	public void getClassesWithIssueId(String repoLocation, String issueId) {
 		FindClassName findClassName= new FindClassName();

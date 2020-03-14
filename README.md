@@ -3,8 +3,9 @@ This is a tool I am developing as part of my school project. It interfaces with 
 
 Instructions:
 =============
-1. Please congifure the config.properties to pass inputs to the program.
-2. Clone git repository to you local machine, and enter the path in config.properties
+1. Clone git repository to you local machine, and enter the path in config.properties
+2. Add location of the local repo to the config.properties file (for your Operating System, ignore the other two OS properties)
+2. Configure 'project' and 'version' properties in config.properties to pass inputs to the program.
 
 
 Sample configuration(config.properties) for Windows:
