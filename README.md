@@ -8,16 +8,19 @@ Instructions:
 
 
 Sample configuration(config.properties) for Windows:
---------------------------
+----------------------------------------------------
+```
     #RiskyCommitMiner INPUTS
 project=MATH
 version=3.0
 localRepoLocation=C:/commons-math/
-
+```
 
 Sample configuration(config.properties) for Linux(Mac may work):
---------------------------------------
+----------------------------------------------------------------
+```
     #RiskyCommitMiner INPUTS
 project=MATH
 version=3.0
 localRepoLocation=/home/user/commons-math/
+```
