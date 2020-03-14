@@ -1,5 +1,7 @@
 package com.sherry.minedata;
 
+import com.sherry.rest.RestClient;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -53,6 +55,17 @@ public class FindClassName {
 			 }
 		
 		return classesToPrioritize;
+	}
+
+	public void getClassesWithIssueId(String repoLocation, String issueId) {
+		FindCommits findCommits= new FindCommits();
+		RestClient restClient= new RestClient();
+
+		List<String> classesToPrioritize=getClassesToPrioritize(repoLocation, findCommits.findCommits(restClient.getCommentsForIssue(issueId)));
+
+		for(String classX:classesToPrioritize) {
+			System.out.println(classX);
+		}
 	}
     
 	
