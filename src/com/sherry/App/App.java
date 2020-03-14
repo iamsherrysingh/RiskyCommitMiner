@@ -32,12 +32,13 @@ public class App {
 
 		//Find host Operating System and use the appropriate property from the properties file.
 		String hostOS= System.getProperty("os.name").split(" ")[0];
-		String repoLocationProperty="Local git repository not configured or host operating OS unknown.\n Please manually over-ride App.repoLocationProperty ";
+		String repoLocationProperty="Local git repository not configured or host operating OS unknown.\n" +
+									"Please manually over-ride App.repoLocationProperty";
 		if(hostOS.equalsIgnoreCase("windows")){
 			repoLocationProperty="localRepoLocationWindows";
 		}else if(hostOS.equalsIgnoreCase("linux")){
 			repoLocationProperty="localRepoLocationLinux";
-		}else if(hostOS.equalsIgnoreCase("windows")) {
+		}else if(hostOS.equalsIgnoreCase("mac")) {
 			repoLocationProperty="localRepoLocationMac";
 		}
 
