@@ -1,6 +1,7 @@
 package com.sherry.App;
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
@@ -42,12 +43,22 @@ public class App {
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
 		System.out.println(issueIds);
 		System.out.println("Issue Ids found: "+issueIds.size());
+		FileWriter fileWriter= new FileWriter("output/issueIDs.txt");
+		fileWriter.write("Total Issues: "+issueIds.size()+"\n"+issueIds.toString());
+		fileWriter.close();
 
 		//scan local repo to find classes that changed
 		System.out.println("Classes Found:");
+		StringBuffer buffer= new StringBuffer("Classes that have changed\n" +
+				                              "=========================\n");
 		for(String issueId: issueIds) {
-			findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
+			buffer.append(findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId));
 		}
+		fileWriter= new FileWriter("output/classes.txt");
+
+		fileWriter.write(buffer.toString().trim());
+		fileWriter.close();
+
 	}
 
 }

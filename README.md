@@ -7,7 +7,9 @@ This is a tool I am developing as part of my school project. It interfaces with 
 git clone <project git URL>
 ```
 2. Add location of the local repo to the src/config.properties file (just for your Operating System, ignore the other two OS properties)
-2. Configure 'project' and 'version' properties in src/config.properties to pass inputs to the program.
+3. Configure 'project' and 'version' properties in src/config.properties to pass inputs to the program.
+4. Run com.sherry.App.App.main(String[] args)
+5. Find Issue IDs and Classes that changed in 'output' directory  
 
 
 ### Sample configuration(src/config.properties) for Windows:
