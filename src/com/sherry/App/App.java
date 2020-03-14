@@ -1,6 +1,9 @@
 package com.sherry.App;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import com.sherry.minedata.FindClassName;
 import com.sherry.minedata.FindCommits;
@@ -9,15 +12,17 @@ import com.sherry.rest.RestClient;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		App app= new App();
+		Properties properties= new Properties();
+		properties.load(new FileInputStream("src/config.properties"));
 
 		//Testing area below this line
 		RestClient restClient= new RestClient();
 		FindIssueID findIssueID= new FindIssueID();
 		
-		String jsonOutput= restClient.getListOfIssues("MATH", "3.0");
+		String jsonOutput= restClient.getListOfIssues(properties.getProperty("project"), properties.getProperty("version"));
 		System.out.println("JSON Output: "+jsonOutput);
 
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
