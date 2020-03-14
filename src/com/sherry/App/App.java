@@ -21,6 +21,7 @@ public class App {
 		System.out.println("JSON Output: "+jsonOutput);
 
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
+		System.out.println(issueIds);
 		System.out.println("Issue Ids found: "+issueIds.size());
 
 		System.out.println("Classes Found:");
