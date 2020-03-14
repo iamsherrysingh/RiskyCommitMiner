@@ -18,6 +18,8 @@ git clone <project git URL>
 project=MATH
 version=3.0
 localRepoLocationWindows=C:/commons-math/
+issueIDs.fileOutput=output/issueIDs.txt
+classes.fileOutput=output/classes.txt
 ```
 
 ### Sample configuration(src/config.properties) for Linux:
@@ -26,6 +28,8 @@ localRepoLocationWindows=C:/commons-math/
 project=MATH
 version=3.0
 localRepoLocationLinux=/home/user/commons-math/
+issueIDs.fileOutput=output/issueIDs.txt
+classes.fileOutput=output/classes.txt
 ```
 
 ### Sample configuration(src/config.properties) for Mac(untested):
@@ -34,4 +38,6 @@ localRepoLocationLinux=/home/user/commons-math/
 project=MATH
 version=3.0
 localRepoLocationMac=/home/user/commons-math/
+issueIDs.fileOutput=output/issueIDs.txt
+classes.fileOutput=output/classes.txt
 ```

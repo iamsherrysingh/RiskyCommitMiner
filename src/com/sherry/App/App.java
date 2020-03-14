@@ -43,7 +43,7 @@ public class App {
 		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
 		System.out.println(issueIds);
 		System.out.println("Issue Ids found: "+issueIds.size());
-		FileWriter fileWriter= new FileWriter("output/issueIDs.txt");
+		FileWriter fileWriter= new FileWriter(properties.getProperty("issueIDs.fileOutput"));
 		fileWriter.write("Total Issues: "+issueIds.size()+"\n"+issueIds.toString());
 		fileWriter.close();
 
@@ -54,7 +54,7 @@ public class App {
 		for(String issueId: issueIds) {
 			buffer.append(findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId));
 		}
-		fileWriter= new FileWriter("output/classes.txt");
+		fileWriter= new FileWriter(properties.getProperty("classes.fileOutput"));
 
 		fileWriter.write(buffer.toString().trim());
 		fileWriter.close();
