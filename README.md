@@ -7,7 +7,7 @@ This is a tool I am developing as part of my school project. It interfaces with 
 git clone <project git URL>
 ```
 2. Clone this project in a Java IDE(Eclipse, IntelliJ, etc.)
-3. Add location of the local repo to the src/config.properties file (just for your Operating System, ignore the other two OS properties)
+3. Add location of the local repo(from Step 1) to the src/config.properties file (just for your Operating System, ignore the other two OS properties)
 4. Configure 'project' and 'version' properties in src/config.properties to pass inputs to the program.
 5. Run com.sherry.App.App.main(String[] args)
 6. Find Issue IDs and Classes that changed in the 'output' directory  
