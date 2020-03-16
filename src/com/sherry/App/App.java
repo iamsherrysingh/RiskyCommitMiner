@@ -54,6 +54,8 @@ public class App {
 		for(String issueId: issueIds) {
 			buffer.append(findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId));
 		}
+		//TO-DO remove duplicates in classes list
+		//TO-DO find classes that depend on these classes. and log them
 		fileWriter= new FileWriter(properties.getProperty("classes.fileOutput"));
 
 		fileWriter.write(buffer.toString().trim());

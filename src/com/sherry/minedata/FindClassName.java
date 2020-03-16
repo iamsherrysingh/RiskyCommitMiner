@@ -67,5 +67,8 @@ public class FindClassName {
 		return buffer.toString();
 	}
     
-	
+	public List<String> getDependenciesForClass(String repoLocation, String className){
+		
+		return null;
+	}
 }
