@@ -40,7 +40,7 @@ public class App {
 		System.out.println("JSON Output: "+jsonOutput);
 
 		//filter JSON request to find all issue IDs
-		List<String> issueIdsList= findIssueID.findIssueIds(jsonOutput);
+		Set<String> issueIdsList= findIssueID.findIssueIds(jsonOutput);
 		System.out.println(issueIdsList);
 		System.out.println("Issue Ids found: "+issueIdsList.size());
 		writeToFile(issueIdsList, "issueIDs.fileOutput");

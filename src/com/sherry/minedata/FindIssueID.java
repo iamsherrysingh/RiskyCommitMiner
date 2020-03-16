@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 
 public class FindIssueID {
 	
-	public List<String> findIssueIds(String jsonResultAffectedVersions) {
+	public Set<String> findIssueIds(String jsonResultAffectedVersions) {
 		Set<String> allMatches= new HashSet<String>();
-		List<String> allIssueIds= new ArrayList<String>();
+		Set<String> allIssueIds= new HashSet<>();
 
 		String pattern="\",\"key\":\"MATH-[0-9]+\",\"";
 		
