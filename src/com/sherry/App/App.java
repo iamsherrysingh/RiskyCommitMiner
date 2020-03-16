@@ -66,19 +66,6 @@ public class App {
 		System.out.println(x);
 	}
 
-	private static boolean writeToFile(List<String> data, String fileLocationInProperties) throws IOException {
-		Properties properties= new Properties();
-		properties.load(new FileInputStream("src/config.properties"));
-		try {
-			FileWriter fileWriter = new FileWriter(properties.getProperty(fileLocationInProperties));
-			for(String s: data){fileWriter.write(s+"\n");}
-			fileWriter.close();
-		}catch(Exception e){
-			throw e;
-		}
-		return true;
-	}
-
 	private static boolean writeToFile(Set<String> data, String fileLocationInProperties) throws IOException {
 		Properties properties= new Properties();
 		properties.load(new FileInputStream("src/config.properties"));
@@ -91,5 +78,4 @@ public class App {
 		}
 		return true;
 	}
-
 }
