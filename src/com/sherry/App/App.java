@@ -1,10 +1,10 @@
 package com.sherry.App;
 
 import java.io.FileInputStream;
+import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
+
 import com.sherry.minedata.FindClassName;
 import com.sherry.minedata.FindIssueID;
 import com.sherry.rest.RestClient;
@@ -40,27 +40,53 @@ public class App {
 		System.out.println("JSON Output: "+jsonOutput);
 
 		//filter JSON request to find all issue IDs
-		List<String> issueIds= findIssueID.findIssueIds(jsonOutput);
-		System.out.println(issueIds);
-		System.out.println("Issue Ids found: "+issueIds.size());
-		FileWriter fileWriter= new FileWriter(properties.getProperty("issueIDs.fileOutput"));
-		fileWriter.write("Total Issues: "+issueIds.size()+"\n"+issueIds.toString());
-		fileWriter.close();
+		List<String> issueIdsList= findIssueID.findIssueIds(jsonOutput);
+		System.out.println(issueIdsList);
+		System.out.println("Issue Ids found: "+issueIdsList.size());
+		writeToFile(issueIdsList, "issueIDs.fileOutput");
 
 		//scan local repo to find classes that changed
-		System.out.println("Classes Found:");
-		StringBuffer buffer= new StringBuffer("Classes that have changed\n" +
-				                              "=========================\n");
-		for(String issueId: issueIds) {
-			buffer.append(findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId));
+		Set<String> classesList= new HashSet<>();
+		for(String issueId: issueIdsList) {
+			String classFound=findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
+			if(!classFound.equalsIgnoreCase("")){classesList.add(classFound);}
 		}
-		//TO-DO remove duplicates in classes list
-		//TO-DO find classes that depend on these classes. and log them
-		fileWriter= new FileWriter(properties.getProperty("classes.fileOutput"));
+		writeToFile(classesList, "classes.fileOutput");
 
-		fileWriter.write(buffer.toString().trim());
-		fileWriter.close();
+		//find dependencies for classes found above
+		Set<String> dependenciesList= new HashSet<>();
+		for(String clas: classesList) {
+			String dependencyFound=findClassName.getDependenciesForClass(repoLocationProperty, clas );
+			if(!dependencyFound.equalsIgnoreCase("")){dependenciesList.add(dependencyFound);}
+		}
+		writeToFile(dependenciesList, "dependencies.fileOutput");
 
+	}
+
+	private static boolean writeToFile(List<String> data, String fileLocationInProperties) throws IOException {
+		Properties properties= new Properties();
+		properties.load(new FileInputStream("src/config.properties"));
+		try {
+			FileWriter fileWriter = new FileWriter(properties.getProperty(fileLocationInProperties));
+			for(String s: data){fileWriter.write(s+"\n");}
+			fileWriter.close();
+		}catch(Exception e){
+			throw e;
+		}
+		return true;
+	}
+
+	private static boolean writeToFile(Set<String> data, String fileLocationInProperties) throws IOException {
+		Properties properties= new Properties();
+		properties.load(new FileInputStream("src/config.properties"));
+		try {
+			FileWriter fileWriter = new FileWriter(properties.getProperty(fileLocationInProperties));
+			for(String s: data){fileWriter.write(s+"\n");}
+			fileWriter.close();
+		}catch(Exception e){
+			throw e;
+		}
+		return true;
 	}
 
 }

@@ -22,7 +22,6 @@ public class FindIssueID {
 		}
 
 		for(String mydata: allMatches) {
-			//System.out.println("mydata "+mydata);
 			Pattern pattern1= Pattern.compile("MATH-[0-9]+");
 			Matcher matcher= pattern1.matcher(mydata);
 			if(matcher.find()) {
