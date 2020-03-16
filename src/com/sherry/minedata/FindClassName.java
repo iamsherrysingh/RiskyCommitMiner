@@ -95,7 +95,7 @@ public class FindClassName {
 			while ((line = br.readLine()) != null) {
 				line=line.split(":")[0];
 				line= line.replaceAll("/",".");
-				//line= line.substring(1, line.length());
+				line= line.substring(1, line.length());
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {
@@ -111,7 +111,7 @@ public class FindClassName {
 			while ((line = br.readLine()) != null) {
 				line=line.split(":")[0];
 				line= line.replaceAll("/",".");
-				//line= line.substring(1, line.length());
+				line= line.substring(1, line.length());
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {
@@ -126,7 +126,7 @@ public class FindClassName {
 			while ((line = br.readLine()) != null) {
 				line=line.split(":")[0];
 				line= line.replaceAll("/",".");
-				//line= line.substring(1, line.length());
+				line= line.substring(1, line.length());
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {

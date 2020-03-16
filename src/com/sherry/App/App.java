@@ -49,18 +49,21 @@ public class App {
 		Set<String> classesList= new HashSet<>();
 		for(String issueId: issueIdsList) {
 			String classFound=findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
-			if(!classFound.equalsIgnoreCase("")){classesList.add(classFound);}
+			if(!classFound.equalsIgnoreCase("")){classFound.substring(14); classesList.add(classFound);}
 		}
 		writeToFile(classesList, "classes.fileOutput");
 
 		//find dependencies for classes found above
 		Set<String> dependenciesList= new HashSet<>();
 		for(String clas: classesList) {
-			String dependencyFound=findClassName.getDependenciesForClass(repoLocationProperty, clas );
+			String dependencyFound=findClassName.getDependenciesForClass(properties.getProperty(repoLocationProperty), clas );
 			if(!dependencyFound.equalsIgnoreCase("")){dependenciesList.add(dependencyFound);}
 		}
 		writeToFile(dependenciesList, "dependencies.fileOutput");
 
+		System.out.println("==========");
+		String x= findClassName.getDependenciesForClass(properties.getProperty(repoLocationProperty), "org.apache.commons.math3.analysis.SumSincFunction.java");
+		System.out.println(x);
 	}
 
 	private static boolean writeToFile(List<String> data, String fileLocationInProperties) throws IOException {
