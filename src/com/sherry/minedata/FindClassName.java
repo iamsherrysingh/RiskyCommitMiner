@@ -73,13 +73,15 @@ public class FindClassName {
 		}
 		fullyQualifiedClassName=fullyQualifiedClassName.substring(0,fullyQualifiedClassName.length() - 4 - 1);
 
-		String commandToFindImports="grep -r 'import "+fullyQualifiedClassName.trim()+";' "+repoLocation+"*";
-		System.out.println("==="+commandToFindImports);
+
 
 		String[] splitClassName= fullyQualifiedClassName.trim().split("[.]");
 		String className= splitClassName[splitClassName.length-1];
 		String commandToFindObjectCreation= "grep -r 'new "+className.trim()+"(' "+repoLocation+"*";
 		System.out.println(commandToFindObjectCreation);
+
+		String commandToFindImports="grep -r 'import .*."+className.trim()+";' "+repoLocation+"*";
+		System.out.println(commandToFindImports);
 
 		String commandToFindStaticCalls= "grep -r '"+className.trim()+"\\.' "+repoLocation+"*";
 		System.out.println(commandToFindStaticCalls);

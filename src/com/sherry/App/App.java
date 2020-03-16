@@ -35,6 +35,7 @@ public class App {
 			System.exit(-1);
 		}
 
+
 		//get JSON result using JQL request
 		String jsonOutput= restClient.getListOfIssues(properties.getProperty("project"), properties.getProperty("version"));
 		System.out.println("JSON Output: "+jsonOutput);
@@ -45,13 +46,17 @@ public class App {
 		System.out.println("Issue Ids found: "+issueIdsList.size());
 		writeToFile(issueIdsList, "issueIDs.fileOutput");
 
+
 		//scan local repo to find classes that changed
 		Set<String> classesList= new HashSet<>();
 		for(String issueId: issueIdsList) {
 			String classFound=findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
-			if(!classFound.equalsIgnoreCase("")){classFound.substring(14); classesList.add(classFound);}
-		}
+			if(!classFound.equalsIgnoreCase("")){
+				//classFound.substring(14);
+				classesList.add(classFound);}
+			}
 		writeToFile(classesList, "classes.fileOutput");
+
 
 		//find dependencies for classes found above
 		Set<String> dependenciesList= new HashSet<>();
@@ -60,10 +65,6 @@ public class App {
 			if(!dependencyFound.equalsIgnoreCase("")){dependenciesList.add(dependencyFound);}
 		}
 		writeToFile(dependenciesList, "dependencies.fileOutput");
-
-		System.out.println("==========");
-		String x= findClassName.getDependenciesForClass(properties.getProperty(repoLocationProperty), "org.apache.commons.math3.analysis.SumSincFunction.java");
-		System.out.println(x);
 	}
 
 	private static boolean writeToFile(Set<String> data, String fileLocationInProperties) throws IOException {
