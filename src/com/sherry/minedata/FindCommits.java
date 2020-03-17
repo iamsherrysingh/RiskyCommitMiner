@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 
 public class FindCommits {
-	public List<String> findCommits(String jsonResultComments) {
+	public List<String> findCommitsFromComments(String jsonResultComments) {
 		 List<String> allMatches = new ArrayList<String>();
 		 List<String> allCommits = new ArrayList<String>();
 		 

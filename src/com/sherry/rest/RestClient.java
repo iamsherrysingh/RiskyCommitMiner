@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class RestClient {
 	
-    public String getCommentsForIssue(String issueID) {
+    public String getCommentsFromIssueID(String issueID) {
     	String output="";
         try {
         	String out;
