@@ -11,54 +11,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FindClassName {
-	
-	public Set<String> getClassesToPrioritize(String repoLocation, List<String> commits){
-		String output="";
-		List<String> classesToPrioritize=new ArrayList<String>();
-		
-		for(String commit:commits) {
-			String command="git --git-dir "+repoLocation+".git show "+commit;
-
-			String s;
-	        Process p;
-	        try {
-	            p = Runtime.getRuntime().exec(command);
-	            BufferedReader br = new BufferedReader(
-	                new InputStreamReader(p.getInputStream()));
-	            while ((s = br.readLine()) != null) {
-	                output+=s;
-	                output+="\n";
-	            }
-	            p.waitFor();
-	            p.destroy();
-	        } catch (Exception e) {};
-		}
-
-		return parseOutput(output);
-	}
-	
-	private Set<String> parseOutput(String inputString){
-		Set<String> classesToPrioritize=new HashSet<String>();
-		String pattern ="[-+][-+][-+].+\\.java";
-		
-		Matcher m = Pattern.compile(pattern)
-			     .matcher(inputString);
-			 while (m.find()) {
-				 String extractedLine= m.group();
-				 extractedLine=extractedLine.substring(6, extractedLine.length());
-				 extractedLine= extractedLine.replaceAll("/", ".");
-				 classesToPrioritize.add(extractedLine);
-			 }
-		
-		return classesToPrioritize;
-	}
-
-	public String getClassesWithIssueId(String repoLocation, String issueId) throws IOException {
+	public String getClassesUsingIssueId(String repoLocation, String issueId) throws IOException {
 		FindCommits findCommits= new FindCommits();
 		RestClient restClient= new RestClient();
 		StringBuffer buffer= new StringBuffer("");
 
-		Set<String> classesToPrioritize=getClassesToPrioritize(repoLocation, findCommits.findCommits(restClient.getCommentsForIssue(issueId)));
+		List<String> commits= findCommits.findCommitsFromComments(restClient.getCommentsFromIssueID(issueId));
+		Set<String> classesToPrioritize= getClassesFromCommits(repoLocation, commits);
 
 		for(String classX:classesToPrioritize) {
 			buffer.append(classX+"\n");
@@ -66,7 +25,7 @@ public class FindClassName {
 
 		return buffer.toString();
 	}
-    
+
 	public String getDependenciesForClass(String repoLocation, String fullyQualifiedClassName){
 		if(fullyQualifiedClassName.trim().equalsIgnoreCase("")){
 			return "";
@@ -136,4 +95,47 @@ public class FindClassName {
 		}
 		return output.trim();
 	}
+	
+	private Set<String> getClassesFromCommits(String repoLocation, List<String> commits){
+		String output="";
+		List<String> classesToPrioritize=new ArrayList<String>();
+		
+		for(String commit:commits) {
+			String command="git --git-dir "+repoLocation+".git show "+commit;
+
+			String s;
+	        Process p;
+	        try {
+	            p = Runtime.getRuntime().exec(command);
+	            BufferedReader br = new BufferedReader(
+	                new InputStreamReader(p.getInputStream()));
+	            while ((s = br.readLine()) != null) {
+	                output+=s;
+	                output+="\n";
+	            }
+	            p.waitFor();
+	            p.destroy();
+	        } catch (Exception e) {};
+		}
+
+		return parseOutput(output);
+	}
+	
+	private Set<String> parseOutput(String inputString){
+		Set<String> classesToPrioritize=new HashSet<String>();
+		String pattern ="[-+][-+][-+].+\\.java";
+		
+		Matcher m = Pattern.compile(pattern)
+			     .matcher(inputString);
+			 while (m.find()) {
+				 String extractedLine= m.group();
+				 extractedLine=extractedLine.substring(6, extractedLine.length());
+				 extractedLine= extractedLine.replaceAll("/", ".");
+				 classesToPrioritize.add(extractedLine);
+			 }
+		
+		return classesToPrioritize;
+	}
+
+
 }

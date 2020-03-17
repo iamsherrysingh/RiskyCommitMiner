@@ -49,7 +49,7 @@ public class App {
 		//scan local repo to find classes that changed
 		Set<String> classesList= new HashSet<>();
 		for(String issueId: issueIdsList) {
-			String classFound=findClassName.getClassesWithIssueId(properties.getProperty(repoLocationProperty), issueId);
+			String classFound=findClassName.getClassesUsingIssueId(properties.getProperty(repoLocationProperty), issueId);
 			if(!classFound.equalsIgnoreCase("")){
 				//classFound.substring(14);
 				classesList.add(classFound);}
