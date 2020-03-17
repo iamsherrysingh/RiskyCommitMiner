@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import com.sherry.minedata.FindClassName;
 import com.sherry.minedata.FindIssueID;
 import com.sherry.rest.RestClient;

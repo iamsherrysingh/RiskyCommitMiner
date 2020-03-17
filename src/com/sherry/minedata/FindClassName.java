@@ -95,9 +95,9 @@ public class FindClassName {
 			InputStream in= proc.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			while ((line = br.readLine()) != null) {
-				line=line.split(":")[0];
-				line= line.replaceAll("/",".");
-				line= line.substring(1, line.length());
+				line=line.split(":")[0];                    // reading output of grep pre :
+				line= line.replaceAll("/","."); //replace slash with .
+				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {
@@ -111,9 +111,9 @@ public class FindClassName {
 			InputStream in= proc.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			while ((line = br.readLine()) != null) {
-				line=line.split(":")[0];
-				line= line.replaceAll("/",".");
-				line= line.substring(1, line.length());
+				line=line.split(":")[0];                    // reading output of grep pre :
+				line= line.replaceAll("/","."); //replace slash with .
+				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {
@@ -126,9 +126,9 @@ public class FindClassName {
 			InputStream in= proc.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			while ((line = br.readLine()) != null) {
-				line=line.split(":")[0];
-				line= line.replaceAll("/",".");
-				line= line.substring(1, line.length());
+				line=line.split(":")[0];                    // reading output of grep pre :
+				line= line.replaceAll("/","."); //replace slash with .
+				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				output+=line+"\n";
 			}
 		} catch (Exception ex) {
