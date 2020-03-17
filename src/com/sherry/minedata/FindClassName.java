@@ -30,20 +30,15 @@ public class FindClassName {
 		if(fullyQualifiedClassName.trim().equalsIgnoreCase("")){
 			return "";
 		}
+
+		//remove trailing .java
 		fullyQualifiedClassName=fullyQualifiedClassName.substring(0,fullyQualifiedClassName.length() - 4 - 1);
-
-
-
 		String[] splitClassName= fullyQualifiedClassName.trim().split("[.]");
-		String className= splitClassName[splitClassName.length-1];
+		String className= splitClassName[splitClassName.length-1];  //getting the class name from fully qualified class name
+
 		String commandToFindObjectCreation= "grep -r 'new "+className.trim()+"(' "+repoLocation+"*";
-		System.out.println(commandToFindObjectCreation);
-
 		String commandToFindImports="grep -r 'import .*."+className.trim()+";' "+repoLocation+"*";
-		System.out.println(commandToFindImports);
-
 		String commandToFindStaticCalls= "grep -r '"+className.trim()+"\\.' "+repoLocation+"*";
-		System.out.println(commandToFindStaticCalls);
 
 		String line="";
 		Process p;
@@ -62,7 +57,6 @@ public class FindClassName {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
 
 		try {    //Find Object Creation
 			String[] cmd = {"/bin/sh", "-c", commandToFindObjectCreation};
