@@ -124,9 +124,10 @@ public class FindClassName {
 				try{
 					if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){ //considering only .java files
 //					output+=line+"\n";
-						dependencySet.add(line);
+						if(line.split("[.]")[1].equalsIgnoreCase("main")) //ignore test dependencies
+						{dependencySet.add(line);}
 					}
-				}finally{}
+				}catch(Exception e){}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -144,9 +145,10 @@ public class FindClassName {
 				try{
 					if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){ //considering only .java files
 //					output+=line+"\n";
-						dependencySet.add(line);
+						if(line.split("[.]")[1].equalsIgnoreCase("main")) //ignore test dependencies
+						{dependencySet.add(line);}
 					}
-				}finally{}
+				}catch(Exception e){}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -164,9 +166,10 @@ public class FindClassName {
 				try{
 					if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){ //considering only .java files
 //					output+=line+"\n";
-						dependencySet.add(line);
+						if(line.split("[.]")[1].equalsIgnoreCase("main")) //ignore test dependencies
+						{dependencySet.add(line);}
 					}
-				}finally{}
+				}catch(Exception e){}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
