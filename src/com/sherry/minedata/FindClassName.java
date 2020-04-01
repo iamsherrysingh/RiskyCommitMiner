@@ -26,9 +26,9 @@ public class FindClassName {
 		return buffer.toString();
 	}
 
-	public String getDependenciesForClass(String repoLocation, String fullyQualifiedClassName){
+	public Set<String> getDependenciesForClass2(String repoLocation, String fullyQualifiedClassName){
 		if(fullyQualifiedClassName.trim().equalsIgnoreCase("")){
-			return "";
+			return null;
 		}
 
 		//remove trailing .java
@@ -43,6 +43,7 @@ public class FindClassName {
 		String line="";
 		Process p;
 		String output="";
+		Set<String> dependencySet= new HashSet<String>();
 		try {    //Find imports
 			String[] cmd = {"/bin/sh", "-c", commandToFindImports};
 			Process proc = Runtime.getRuntime().exec(cmd);
@@ -53,7 +54,9 @@ public class FindClassName {
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){ //considering only .java files
-					output+=line+"\n";}
+//					output+=line+"\n";
+					dependencySet.add(line);
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -69,7 +72,9 @@ public class FindClassName {
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){  //considering only .java files
-					output+=line+"\n";}
+//					output+=line+"\n";
+					dependencySet.add(line);
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -85,12 +90,14 @@ public class FindClassName {
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
 				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){  //considering only .java files
-					output+=line+"\n";}
+//					output+=line+"\n";
+					dependencySet.add(line);
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		return output.trim();
+		return dependencySet;
 	}
 	
 	private Set<String> getClassesFromCommits(String repoLocation, List<String> commits){
