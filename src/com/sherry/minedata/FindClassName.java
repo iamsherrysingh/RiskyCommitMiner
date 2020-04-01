@@ -52,7 +52,8 @@ public class FindClassName {
 				line=line.split(":")[0];                    // reading output of grep pre :
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
-				output+=line+"\n";
+				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){ //considering only .java files
+					output+=line+"\n";}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -67,7 +68,8 @@ public class FindClassName {
 				line=line.split(":")[0];                    // reading output of grep pre :
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
-				output+=line+"\n";
+				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){  //considering only .java files
+					output+=line+"\n";}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -82,7 +84,8 @@ public class FindClassName {
 				line=line.split(":")[0];                    // reading output of grep pre :
 				line= line.replaceAll("/","."); //replace slash with .
 				line= line.substring(repoLocation.length(), line.length());  //remove trailing repo location from file path
-				output+=line+"\n";
+				if((line.substring(line.length()-5,line.length()).equalsIgnoreCase(".java"))){  //considering only .java files
+					output+=line+"\n";}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -130,6 +133,4 @@ public class FindClassName {
 		
 		return classesToPrioritize;
 	}
-
-
 }

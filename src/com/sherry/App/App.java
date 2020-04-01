@@ -9,7 +9,6 @@ import com.sherry.minedata.FindIssueID;
 import com.sherry.rest.RestClient;
 
 public class App {
-
 	public static void main(String[] args) throws IOException {
 		FindClassName findClassName= new FindClassName();
 		Properties properties= new Properties();
@@ -64,6 +63,8 @@ public class App {
 			if(!dependencyFound.equalsIgnoreCase("")){dependenciesList.add(dependencyFound);}
 		}
 		writeToFile(dependenciesList, "dependencies.fileOutput");
+
+		System.out.println("Please find the results in the output directory.");
 	}
 
 	private static boolean writeToFile(Set<String> data, String fileLocationInProperties) throws IOException {
